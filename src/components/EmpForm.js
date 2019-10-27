@@ -2,24 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik } from 'formik';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Redirect } from "react-router";
 
 class EmpForm extends Component {
-    addEmp() {
-        // console.log(value);
-        // this.props.onAddEmp
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false
+        }
+    }
+    submitAction = null;
 
     render() {
-        // const surnameControl = (props) => <FormControl type="text" placeholder="Введите фамилию" {...props}/>;
-        // const firstNameControl = (props) => <FormControl type="text" placeholder="Введите имя" {...props}/>;
-        // const patronymicControl = (props) => <FormControl type="text" placeholder="Введите отчество" {...props}/>;
-        // const birthdayControl = (props) => <FormControl type="date" placeholder="Введите дату рождения" {...props}/>;
-        // const serviceNumberControl = (props) => <FormControl type="number" placeholder="Введите табельный номер" {...props}/>;
-        // const positionControl = (props) => <FormControl type="text" placeholder="Введите должность" {...props}/>;
-        // const divisionControl = (props) => <FormControl type="text" placeholder="Введите подразделение" {...props}/>;
-
+        if(this.state.redirect) {
+            return <Redirect to={'/'}/>
+        }
         return (
-            <Formik initialValues={{
+            <Formik
+                initialValues={{
                 surname: "",
                 firstName: "",
                 patronymic: "",
@@ -27,9 +27,27 @@ class EmpForm extends Component {
                 serviceNumber: "",
                 positionEmp: "",
                 division: ""
-            }}>
-                {({values, errors, touched, handleChange}) => (
-                    <Form>
+                }}
+                onSubmit={(values, {setSubmitting, resetForm}) => {
+                    if(this.submitAction == 'saveAndDoMore') {
+                        setSubmitting(true);
+                        this.props.onAddEmp(values);
+                        resetForm();
+                        setSubmitting(false);
+                    }
+                    if(this.submitAction == 'saveAndTransition') {
+                        setSubmitting(true);
+                        this.props.onAddEmp(values);
+                        resetForm();
+                        setSubmitting(false);
+                        this.setState({
+                            redirect: true
+                        })
+                    }
+                }}
+            >
+                {({values, errors, touched, handleChange, handleSubmit}) => (
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Label>
                                 Фамилия
@@ -75,12 +93,18 @@ class EmpForm extends Component {
 
                         <Form.Row>
                             <Col>
-                                <Button variant="dark" type="submit">
+                                <Button variant="dark" onClick={() => {
+                                    this.submitAction = 'saveAndDoMore';
+                                    handleSubmit();
+                                }}>
                                     Сохранить и добавить еще
                                 </Button>
                             </Col>
                             <Col>
-                                <Button variant="secondary">
+                                <Button variant="secondary" onClick={() => {
+                                    this.submitAction = 'saveAndTransition';
+                                    handleSubmit();
+                                }}>
                                     Сохранить и перейти к списку
                                 </Button>
                             </Col>
@@ -88,51 +112,6 @@ class EmpForm extends Component {
                     </Form>
                 )}
             </Formik>
-            // {/*<Form*/}
-            // {/*    model="emp"*/}
-            // {/*    onSubmit={(emp) => {this.props.onAddEmp(this,emp.surname)}}*/}
-            // {/*>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.surname">Фамилия</label>*/}
-            // {/*        <Control.custom model="emp.surname" id="emp.surname" component={surnameControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.firstName">Имя</label>*/}
-            // {/*        <Control.custom model="emp.firstName" id="emp.firstName" component={firstNameControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.patronymic">Отчество</label>*/}
-            // {/*        <Control.custom model="emp.patronymic" id="emp.patronymic" component={patronymicControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.birthday">Дата рождения</label>*/}
-            // {/*        <Control.custom model="emp.birthday" id="emp.birthday" component={birthdayControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.serviceNumber">Табельный номер</label>*/}
-            // {/*        <Control.custom model="emp.serviceNumber" id="emp.serviceNumber" component={serviceNumberControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.position">Должность</label>*/}
-            // {/*        <Control.custom model="emp.position" id="emp.position" component={positionControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <FormGroup>*/}
-            // {/*        <label htmlFor="emp.division">Подразделение</label>*/}
-            // {/*        <Control.custom model="emp.division" id="emp.division" component={divisionControl}/>*/}
-            // {/*    </FormGroup>*/}
-            // {/*    <Row>*/}
-            // {/*        <Col>*/}
-            // {/*            <Button variant="dark" type="submit">*/}
-            // {/*                Сохранить и добавить еще*/}
-            // {/*            </Button>*/}
-            // {/*        </Col>*/}
-            // {/*        <Col>*/}
-            // {/*            <Button variant="secondary">*/}
-            // {/*                Сохранить и перейти к списку*/}
-            // {/*            </Button>*/}
-            // {/*        </Col>*/}
-            // {/*    </Row>*/}
-            // {/*</Form>*/}
         )
     }
 }
@@ -142,10 +121,10 @@ export default connect(
         empoyeesStore: state
     }),
     dispatch => ({
-        onAddEmp: (empName) => {
+        onAddEmp: (emp) => {
             dispatch({
                 type: 'ADD_EMPLOYEE',
-                payload: empName
+                payload: emp
             })
         }
     })
