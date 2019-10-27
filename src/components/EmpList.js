@@ -1,7 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function EmpList() {
-    return (
-        <h1>EmpList</h1>
-    );
+class EmpList extends Component {
+    render() {
+        return (
+            <h1>EmpList</h1>
+        );
+    }
 }
+
+export default EmpList;

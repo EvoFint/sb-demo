@@ -1,7 +1,11 @@
-import React from "react";
+import React, {Component} from "react";
 
-export default function Settings() {
-    return (
-        <h1>Settings</h1>
-    );
+class Settings extends Component {
+    render() {
+        return (
+            <h1>Settings</h1>
+        );
+    }
 }
+
+export default Settings;
