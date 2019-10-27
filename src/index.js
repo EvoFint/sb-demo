@@ -6,12 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import store from './store'
 
-import reducer from './reducers/employees'
-import { combineForms } from "react-redux-form";
 
-const store = createStore(combineForms(reducer), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
     <Provider store={store}>

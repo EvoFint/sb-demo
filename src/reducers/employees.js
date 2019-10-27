@@ -1,4 +1,3 @@
-
 export default function employees(state = ['pepega'], action) {
     if (action.type === 'ADD_EMPLOYEE') {
         return [
