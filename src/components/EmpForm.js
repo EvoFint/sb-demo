@@ -23,7 +23,7 @@ class EmpForm extends Component {
                 initialValues={{
                 surname: "",
                 firstName: "",
-                patronymic: "",
+                lastName: "",
                 birthday: "",
                 serviceNumber: "",
                 positionEmp: "",
@@ -89,15 +89,15 @@ class EmpForm extends Component {
                             </Form.Label>
                             <Form.Control type="text"
                                           placeholder="Введите отчество"
-                                          name="patronymic"
-                                          id="patronymic"
+                                          name="lastName"
+                                          id="lastName"
                                           onChange={handleChange}
-                                          value={values.patronymic}
-                                          isValid={touched.patronymic && !errors.patronymic}
-                                          isInvalid={!!errors.patronymic}
+                                          value={values.lastName}
+                                          isValid={touched.lastName && !errors.lastName}
+                                          isInvalid={!!errors.lastName}
                             />
                             <Form.Control.Feedback type="invalid">
-                                {errors.patronymic}
+                                {errors.lastName}
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
@@ -196,7 +196,7 @@ class EmpForm extends Component {
 
 export default connect(
     state => ({
-        empoyeesStore: state
+        employeesStore: state
     }),
     dispatch => ({
         onAddEmp: (emp) => {
