@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik } from 'formik';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 import { Redirect } from "react-router";
 import validationSchema from "./validationSchema";
 

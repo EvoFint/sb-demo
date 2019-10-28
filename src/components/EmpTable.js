@@ -5,7 +5,6 @@ import { Table } from 'react-bootstrap';
 class EmpTable extends Component {
     targetTableRow(e) {
         const id = e.currentTarget.getAttribute('data-key');
-        console.log(id);
         this.props.getSelectedId(id);
     };
 
@@ -35,6 +34,6 @@ class EmpTable extends Component {
 
 export default connect(
     state => ({
-        employeesStore: state
+        employeesStore: state.employees
     })
 )(EmpTable);

@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
-import reducer from './reducers/employees'
+import employees from './reducers/employees';
+import settings from "./reducers/settings";
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(combineReducers({employees, settings}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

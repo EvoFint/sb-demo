@@ -9,38 +9,38 @@ class ViewEmp extends Component {
         this.state = ({
             employeesStore: this.props.employeesStore
         });
-    }
+    };
     render() {
         return (
             <Container>
                 {console.log(this.props.employeesStore)}
                 <Row>
                     <Col><p><strong>Фамилия</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].surname}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].surname}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Имя</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].firstName}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].firstName}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Отчество</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].lastName}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].lastName}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Дата рождения</strong></p></Col>
-                    <Col><p>{Moment(this.state.employeesStore[this.props.selectedId].birthday).format("DD.MM.YYYY")}</p></Col>
+                    <Col><p>{Moment(this.props.employeesStore[this.props.selectedId].birthday).format("DD.MM.YYYY")}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Табельный номер</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].serviceNumber}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].serviceNumber}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Должность</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].positionEmp}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].positionEmp}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Подразделение</strong></p></Col>
-                    <Col><p>{this.state.employeesStore[this.props.selectedId].division}</p></Col>
+                    <Col><p>{this.props.employeesStore[this.props.selectedId].division}</p></Col>
                 </Row>
                 <Row>
                     <Col>
@@ -49,12 +49,12 @@ class ViewEmp extends Component {
                     <Col>
                         <Row>
                             <Col>
-                                <Button variant='secondary'>
+                                <Button variant='secondary' onClick={(e) => this.props.getTargetButton('change')}>
                                     Изменить
                                 </Button>
                             </Col>
                             <Col>
-                                <Button variant='danger'>
+                                <Button variant='danger' onClick={(e) => this.props.getTargetButton('delete')}>
                                     Удалить
                                 </Button>
                             </Col>
@@ -68,6 +68,6 @@ class ViewEmp extends Component {
 
 export default connect(
     state => ({
-        employeesStore: state
+        employeesStore: state.employees
     })
 )(ViewEmp);

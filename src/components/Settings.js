@@ -1,9 +1,14 @@
 import React, {Component} from "react";
+import {Container, Form} from "react-bootstrap";
+
+import SettingsForm from "./SettingsForm";
 
 class Settings extends Component {
     render() {
         return (
-            <h1>Settings</h1>
+            <Container>
+                <SettingsForm/>
+            </Container>
         );
     }
 }
