@@ -5,12 +5,8 @@ import { connect } from "react-redux";
 
 class DelModal extends Component {
     deleteEmp() {
-        // let array = [1, 2, 3, 4];
-        // array.splice(2, 1);
-        // console.log(array);
         this.props.getSelectedId(0);
         this.props.onDelEmp(this.props.selectedId);
-        console.log(this.props.selectedId);
         this.props.handleClose();
     };
     render() {

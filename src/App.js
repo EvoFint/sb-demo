@@ -5,7 +5,7 @@ import EmpList from './components/EmpList';
 import NewEmp from './components/NewEmp';
 import Settings from './components/Settings';
 
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { HashRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends Component {
     render() {

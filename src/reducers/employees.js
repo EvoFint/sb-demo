@@ -17,9 +17,11 @@ export default function employees(state = [initialEmployee], action) {
     } else if (action.type === 'CHANGE_EMPLOYEE') {
         return state;
     } else if (action.type === 'DELETE_EMPLOYEE') {
-        state.splice(action.payload, 1);
+        console.log(action.payload);
         console.log(state);
-        return state
+        let newState = state.filter((it, index) => index != action.payload);
+        console.log(newState);
+        return newState
     }
     return state
 }

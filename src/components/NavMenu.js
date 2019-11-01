@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import { Navbar, Nav, Container} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 class NavMenu extends Component {
     render() {
@@ -8,9 +9,9 @@ class NavMenu extends Component {
                 <Container>
                     <Navbar.Brand>SB-DEMO</Navbar.Brand>
                     <Nav className="mr-auto" className="justify-content-end">
-                        <Nav.Link href='/'>Список сотрудников</Nav.Link>
-                        <Nav.Link href='/newemployee'>Добавить запись</Nav.Link>
-                        <Nav.Link href='/settings'>Настройки</Nav.Link>
+                        <Nav.Link><Link to={'/'}>Список сотрудников</Link></Nav.Link>
+                        <Nav.Link><Link to={'/newemployee'}>Добавить запись</Link></Nav.Link>
+                        <Nav.Link><Link to={'/settings'}>Настройки</Link></Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

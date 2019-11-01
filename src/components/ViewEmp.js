@@ -11,36 +11,37 @@ class ViewEmp extends Component {
         });
     };
     render() {
+        const { selectedId, employeesStore } = this.props;
+        const employeesStoreElement = employeesStore[selectedId];
         return (
             <Container>
-                {console.log(this.props.employeesStore)}
                 <Row>
                     <Col><p><strong>Фамилия</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].surname}</p></Col>
+                    <Col><p>{employeesStoreElement.surname}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Имя</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].firstName}</p></Col>
+                    <Col><p>{employeesStoreElement.firstName}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Отчество</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].lastName}</p></Col>
+                    <Col><p>{employeesStoreElement.lastName}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Дата рождения</strong></p></Col>
-                    <Col><p>{Moment(this.props.employeesStore[this.props.selectedId].birthday).format("DD.MM.YYYY")}</p></Col>
+                    <Col><p>{Moment(employeesStoreElement.birthday).format("DD.MM.YYYY")}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Табельный номер</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].serviceNumber}</p></Col>
+                    <Col><p>{employeesStoreElement.serviceNumber}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Должность</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].positionEmp}</p></Col>
+                    <Col><p>{employeesStoreElement.positionEmp}</p></Col>
                 </Row>
                 <Row>
                     <Col><p><strong>Подразделение</strong></p></Col>
-                    <Col><p>{this.props.employeesStore[this.props.selectedId].division}</p></Col>
+                    <Col><p>{employeesStoreElement.division}</p></Col>
                 </Row>
                 <Row>
                     <Col>

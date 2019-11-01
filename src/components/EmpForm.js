@@ -1,23 +1,16 @@
-import React, { Component } from "react";
+import React, {Component, PureComponent} from "react";
 import { connect } from "react-redux";
 import { Formik } from 'formik';
 import { Form, Button, Col } from 'react-bootstrap';
-import { Redirect } from "react-router";
+import { useHistory, withRouter } from "react-router";
 import validationSchema from "./validationSchema";
+import {compose} from "redux";
 
 class EmpForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            redirect: false
-        }
-    }
     submitAction = null;
 
     render() {
-        if(this.state.redirect) {
-            return <Redirect to={'/'}/>
-        }
+        // let history = useHistory();
         return (
             <Formik
                 initialValues={{
