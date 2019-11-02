@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Moment from 'moment';
 
 function ViewEmp(props) {
-    const { selectedId, employeesStore } = props;
+    const { selectedId, employeesStore, appSettings } = props;
     const chackStore = (key) => {
         if(employeesStore.length == 0) {
             return ''
@@ -12,43 +12,60 @@ function ViewEmp(props) {
             return employeesStore[selectedId][key]
         }
     };
+    const boxSurname = (
+        <Row>
+            <Col><p><strong>Фамилия</strong></p></Col>
+            <Col><p>{chackStore('surname')}</p></Col>
+        </Row>
+    );
+    const boxFirstName = (
+        <Row>
+            <Col><p><strong>Имя</strong></p></Col>
+            <Col><p>{chackStore('firstName')}</p></Col>
+        </Row>
+    );
+    const boxLastName = (
+        <Row>
+            <Col><p><strong>Отчество</strong></p></Col>
+            <Col><p>{chackStore('lastName')}</p></Col>
+        </Row>
+    );
+    const boxBirthday = (
+        <Row>
+            <Col><p><strong>Дата рождения</strong></p></Col>
+            <Col><p>{
+                chackStore('birthday') === '' ? '' : Moment(chackStore('birthday')).format("DD.MM.YYYY")
+            }</p></Col>
+        </Row>
+    );
+    const boxServiceNumber = (
+        <Row>
+            <Col><p><strong>Табельный номер</strong></p></Col>
+            <Col><p>{chackStore('serviceNumber')}</p></Col>
+        </Row>
+    );
+    const boxPositionEmp = (
+        <Row>
+            <Col><p><strong>Должность</strong></p></Col>
+            <Col><p>{chackStore('positionEmp')}</p></Col>
+        </Row>
+    );
+    const boxDivision = (
+        <Row>
+            <Col><p><strong>Подразделение</strong></p></Col>
+            <Col><p>{chackStore('division')}</p></Col>
+        </Row>
+    );
     return (
         <Container>
-            {console.log(Moment(chackStore('')).format("DD.MM.YYYY"))}
+            {appSettings.showSurname ? boxSurname : null}
+            {appSettings.showFirstName ? boxFirstName : null}
+            {appSettings.showLastName ? boxLastName : null}
+            {appSettings.showBirthday ? boxBirthday : null}
+            {appSettings.showServiceNumber ? boxServiceNumber : null}
+            {appSettings.showPositionEmp ? boxPositionEmp : null}
+            {appSettings.showDivision ? boxDivision : null}
             <Row>
-                <Col><p><strong>Фамилия</strong></p></Col>
-                <Col><p>{chackStore('surname')}</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Имя</strong></p></Col>
-                <Col><p>{chackStore('firstName')}</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Отчество</strong></p></Col>
-                <Col><p>{chackStore('lastName')}</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Дата рождения</strong></p></Col>
-                <Col><p>{
-                    chackStore('birthday') === '' ? '' : Moment(chackStore('birthday')).format("DD.MM.YYYY")
-                }</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Табельный номер</strong></p></Col>
-                <Col><p>{chackStore('serviceNumber')}</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Должность</strong></p></Col>
-                <Col><p>{chackStore('positionEmp')}</p></Col>
-            </Row>
-            <Row>
-                <Col><p><strong>Подразделение</strong></p></Col>
-                <Col><p>{chackStore('division')}</p></Col>
-            </Row>
-            <Row>
-                <Col>
-
-                </Col>
                 <Col>
                     <Row>
                         <Col>
@@ -74,6 +91,7 @@ function ViewEmp(props) {
 
 export default connect(
     state => ({
-        employeesStore: state.employees
+        employeesStore: state.employees,
+        appSettings: state.appSettings
     })
 )(ViewEmp);

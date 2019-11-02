@@ -1,4 +1,4 @@
-const initialSettings = [{
+const initialSettings = {
     showSurname: true,
     showFirstName: true,
     showLastName: true,
@@ -6,11 +6,12 @@ const initialSettings = [{
     showServiceNumber: true,
     showPositionEmp: true,
     showDivision: true
-}];
+};
 
 export default function settings(state = initialSettings, action) {
     if(action.type === 'CHANGE_SETTING') {
-        return initialSettings[0] = action.payload
+        let newSettings = action.payload;
+        return newSettings
     }
     return state
 }
