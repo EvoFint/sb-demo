@@ -17,12 +17,18 @@ export default function employees(state = [initialEmployee], action) {
             action.payload
         ];
     } else if (action.type === employeeActions.changeEmployee) {
-        return state;
-    } else if (action.type === employeeActions.deleteEmployee) {
-        console.log(action.payload);
-        console.log(state);
-        let newState = state.filter((it, index) => index != action.payload);
+        console.log(action.payloadIndex, action.payloadValue);
+        let newState = state.map(((value, index) => {
+            if(index == action.payloadIndex) {
+                return action.payloadValue
+            } else {
+                return value
+            }
+        }));
         console.log(newState);
+        return newState;
+    } else if (action.type === employeeActions.deleteEmployee) {
+        let newState = state.filter((it, index) => index != action.payload);
         return newState
     }
     return state

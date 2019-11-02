@@ -21,7 +21,9 @@ class ModalWindow extends Component {
                                  getSelectedId={this.props.getSelectedId}
             />
         } else if (this.props.targetButton === 'change') {
-            setModal = <ChanModal handleClose={this.props.handleClose}/>
+            setModal = <ChanModal handleClose={this.props.handleClose}
+                                  selectedId={this.props.selectedId}
+            />
         }
         return (
             <Modal show={this.props.show} onHide={this.props.handleClose}>
