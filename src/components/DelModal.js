@@ -3,6 +3,8 @@ import {Modal} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import { connect } from "react-redux";
 
+import employeeActions from '../reducers/employeeActions';
+
 class DelModal extends Component {
     deleteEmp() {
         this.props.getSelectedId(0);
@@ -36,7 +38,7 @@ export  default connect(
     dispatch => ({
         onDelEmp: (emp) => {
             dispatch({
-                type: 'DELETE_EMPLOYEE',
+                type: employeeActions.deleteEmployee,
                 payload: emp
             })
         }

@@ -1,3 +1,5 @@
+import employeeActions from './employeeActions'
+
 const initialEmployee = {
   surname: 'Иванов',
   firstName: 'Иван',
@@ -9,14 +11,14 @@ const initialEmployee = {
 };
 
 export default function employees(state = [initialEmployee], action) {
-    if (action.type === 'ADD_EMPLOYEE') {
+    if (action.type === employeeActions.addEmployee) {
         return [
             ...state,
             action.payload
         ];
-    } else if (action.type === 'CHANGE_EMPLOYEE') {
+    } else if (action.type === employeeActions.changeEmployee) {
         return state;
-    } else if (action.type === 'DELETE_EMPLOYEE') {
+    } else if (action.type === employeeActions.deleteEmployee) {
         console.log(action.payload);
         console.log(state);
         let newState = state.filter((it, index) => index != action.payload);
