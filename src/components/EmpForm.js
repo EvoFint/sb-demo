@@ -10,7 +10,7 @@ import employeeActions from '../reducers/employeeActions'
 
 function EmpForm(props) {
     let history = useHistory();
-    const [submitAction, setSubmitAction] = useState(null)
+    const [submitAction, setSubmitAction] = useState(null);
     return (
         <Formik
             initialValues={{
@@ -36,7 +36,7 @@ function EmpForm(props) {
             {({values, errors, touched, handleChange, handleSubmit}) => (
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Фамилия
                     </Form.Label>
                     <Form.Control type="text"
@@ -52,7 +52,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Имя
                     </Form.Label>
                     <Form.Control type="text"
@@ -69,7 +69,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Отчество
                     </Form.Label>
                     <Form.Control type="text"
@@ -86,7 +86,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Дата рождения
                     </Form.Label>
                     <Form.Control type="date"
@@ -103,7 +103,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Табельный номер
                     </Form.Label>
                     <Form.Control type="number"
@@ -120,7 +120,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Должность
                     </Form.Label>
                     <Form.Control type="text"
@@ -137,7 +137,7 @@ function EmpForm(props) {
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>
+                    <Form.Label column={1}>
                         Подразделение
                     </Form.Label>
                     <Form.Control type="text"

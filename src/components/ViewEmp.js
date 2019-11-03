@@ -66,11 +66,13 @@ function ViewEmp(props) {
             {appSettings.showPositionEmp ? boxPositionEmp : null}
             {appSettings.showDivision ? boxDivision : null}
             <Row>
+                <Col></Col>
                 <Col>
                     <Row>
                         <Col>
                             <Button variant='secondary'
                                     disabled={employeesStore.length == 0}
+                                    block
                                     onClick={(e) => props.getTargetButton('change')}>
                                 Изменить
                             </Button>
@@ -78,6 +80,7 @@ function ViewEmp(props) {
                         <Col>
                             <Button variant='danger'
                                     disabled={employeesStore.length == 0}
+                                    block
                                     onClick={(e) => props.getTargetButton('delete')}>
                                 Удалить
                             </Button>

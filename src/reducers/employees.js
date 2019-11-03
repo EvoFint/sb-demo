@@ -11,25 +11,48 @@ const initialEmployee = {
 };
 
 export default function employees(state = [initialEmployee], action) {
-    if (action.type === employeeActions.addEmployee) {
-        return [
-            ...state,
-            action.payload
-        ];
-    } else if (action.type === employeeActions.changeEmployee) {
-        console.log(action.payloadIndex, action.payloadValue);
-        let newState = state.map(((value, index) => {
-            if(index == action.payloadIndex) {
-                return action.payloadValue
-            } else {
-                return value
-            }
-        }));
-        console.log(newState);
-        return newState;
-    } else if (action.type === employeeActions.deleteEmployee) {
-        let newState = state.filter((it, index) => index != action.payload);
-        return newState
+    let newState;
+    switch (action.type) {
+        case employeeActions.addEmployee:
+            return [
+                ...state,
+                action.payload
+            ];
+            break;
+        case employeeActions.deleteEmployee:
+            newState = state.filter((it, index) => index != action.payload);
+            return newState;
+            break;
+        case employeeActions.changeEmployee:
+            newState = state.map(((value, index) => {
+                if(index == action.payloadIndex) {
+                    return action.payloadValue
+                } else {
+                    return value
+                }
+            }));
+            return newState;
+            break;
+        default:
+            return state;
     }
-    return state
+    // if (action.type === employeeActions.addEmployee) {
+    //     return [
+    //         ...state,
+    //         action.payload
+    //     ];
+    // } else if (action.type === employeeActions.changeEmployee) {
+    //     let newState = state.map(((value, index) => {
+    //         if(index == action.payloadIndex) {
+    //             return action.payloadValue
+    //         } else {
+    //             return value
+    //         }
+    //     }));
+    //     return newState;
+    // } else if (action.type === employeeActions.deleteEmployee) {
+    //     let newState = state.filter((it, index) => index != action.payload);
+    //     return newState
+    // }
+    // return state
 }
